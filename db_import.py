@@ -130,4 +130,5 @@ class DBImport():
 
     def data_import(self, query):
         data = pd.read_sql(query, con=self.connection)
+        self.connection.close()
         return data
