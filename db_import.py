@@ -110,6 +110,14 @@ class Queries:
     where date = (select max(date) from monitor_mzproduct);
     '''
 
+    category_query = '''
+    SELECT catenum.product_id, catenum.category_id, catenum.link_type, catedesc.category
+    FROM cscart_products_categories AS catenum
+    LEFT JOIN cscart_category_descriptions AS catedesc
+    ON catenum.category_id = catedesc.category_id
+    WHERE catedesc.lang_code='ko';
+    '''
+
 
 class DBImport():
     def __init__(self, db_type='cscart', db_info_path='mz_db_password.json'):
@@ -132,4 +140,3 @@ class DBImport():
         data = pd.read_sql(query, con=self.connection)
         # self.connection.close() # connection은 init 할때 호출하기 때문에 여기서 close 하면 해당 함수 재사용 불가.
         return data
-
