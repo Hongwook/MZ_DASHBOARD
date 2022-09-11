@@ -130,5 +130,6 @@ class DBImport():
 
     def data_import(self, query):
         data = pd.read_sql(query, con=self.connection)
-        self.connection.close()
+        # self.connection.close() # connection은 init 할때 호출하기 때문에 여기서 close 하면 해당 함수 재사용 불가.
         return data
+
