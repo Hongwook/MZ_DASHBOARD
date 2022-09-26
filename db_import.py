@@ -133,10 +133,11 @@ class DBImport():
         self.user = db_info_dict['user']
         self.__passwd = db_info_dict['passwd']  # 비밀번호에 해당하여 비공개 속성(private attribute) 으로 '__' 처리
         self.db = db_info_dict['db']
-        self.connection = pymysql.connect(host=self.host, port=self.port, user=self.user, passwd=self.__passwd,
-                                          db=self.db)
+
 
     def data_import(self, query):
+        self.connection = pymysql.connect(host=self.host, port=self.port, user=self.user, passwd=self.__passwd,
+                                          db=self.db)
         data = pd.read_sql(query, con=self.connection)
-        # self.connection.close() # connection은 init 할때 호출하기 때문에 여기서 close 하면 해당 함수 재사용 불가.
+        self.connection.close() # connection은 init 할때 호출하기 때문에 여기서 close 하면 해당 함수 재사용 불가.
         return data
