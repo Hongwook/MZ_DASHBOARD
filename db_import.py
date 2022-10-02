@@ -19,7 +19,7 @@ class Queries:
     a.option_1_id, a.option_name_1_kor, a.variant_1_id, a.variant_1_name_kor,
     a.option_2_id, a.option_name_2_kor, a.variant_2_id, a.variant_2_name_kor,
     a.barcode, a.category_M, a.category_S, a.currency, a.purchased_at,
-    a.product_price, a.marked_down_price, a.product_qty, a.order_qty
+    a.product_price, a.marked_down_price, a.product_qty, a.order_qty, a.company_name
     FROM cscart_order_analytics a
     WHERE a.purchased_at between "{}" and "{}"
     ORDER BY a.purchased_at asc;
