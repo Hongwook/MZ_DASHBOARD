@@ -12,6 +12,7 @@ class Queries:
         # 인스턴스 생성 시 입력하는 매개변수(start_date, end_date)의 활용이 필요한 쿼리변수들은 인스턴스 변수로 변경. 나머지는 클래스 변수로 활용
         self.analytics_query = self.analytics_query.format(start_date, end_date)
         self.cart_query = self.cart_query.format(start_date, end_date)
+        self.recommender_query = self.recommender_query.format(start_date, end_date)
 
     # queries for type == 'cscart'
     analytics_query = '''
@@ -118,6 +119,11 @@ class Queries:
     WHERE catedesc.lang_code='ko';
     '''
 
+    recommender_query = '''
+    select *
+    from cscart_users_recommenders
+    where created_at between "{}" and "{}"
+    '''
 
 class DBImport():
     def __init__(self, db_type='cscart', db_info_path='mz_db_password.json'):
